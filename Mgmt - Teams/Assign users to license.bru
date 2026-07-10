@@ -1,0 +1,33 @@
+meta {
+  name: Assign users to license
+  type: http
+  seq: 8
+}
+
+post {
+  url: https://api.supermetrics.com/v1/teams/:team_id/licenses/:license_id/users
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  license_id: 67890
+}
+
+body:json {
+  {
+    "user_ids": [12345]
+  }
+}
+
+docs {
+  Assigns users to a license.
+  Required scope: team management (elevated API key).
+
+  Please note: This replaces the license's entire user list — always send the complete set of user IDs you want assigned; any user omitted will be unassigned.
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Search data sources
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/datasource/search?filter[keyword]=google&filter[status]=RELEASED&filter[product]=API
+  body: none
+  auth: inherit
+}
+
+params:query {
+  filter[keyword]: google
+  filter[status]: RELEASED
+  filter[product]: API
+  ~filter[category]: PAID_MEDIA
+  ~filter[tag]: popular
+  ~filter[is_new]: false
+}
+
+docs {
+  Search data sources.
+}

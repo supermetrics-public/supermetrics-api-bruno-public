@@ -1,0 +1,54 @@
+meta {
+  name: Create destination - BQ
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/destinations
+  body: json
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+headers {
+  accept: application/json
+  content-type: application/json
+}
+
+body:json {
+  {
+    "type": "SQL_BQ",
+    "display_name": "My BigQuery Destination",
+    "auth_method": "AUTH_METHOD_AUTH_KEY",
+    "fields": {
+      "schema": "supermetrics",
+      "auth_key": "{{process.env.BQ_SERVICE_ACCOUNT_KEY}}"
+    }
+  }
+}
+
+docs {
+  Creates a Google BigQuery destination (type SQL_BQ).
+
+  Fields:
+  - schema: the BigQuery DATASET name only, WITHOUT the project prefix.
+  e.g. for dataset id "my_project.dataset_name" use "dataset_name".
+  - auth_key: the ENTIRE service account key JSON, pasted as the value.
+  The service account must have access to the target BigQuery project.
+  See https://cloud.google.com/iam/docs/service-accounts-create#creating
+
+  The service account key is a secret — keep it in .env, not in this file.
+  The API requires fields.auth_key to be a STRING. Bruno's {{}} interpolation
+  is plain text substitution and can't turn a raw JSON object into a valid
+  JSON string, so store BQ_SERVICE_ACCOUNT_KEY in this collection's .env as
+  the key JSON with inner quotes escaped (\") and no outer quotes, on one
+  line. It then drops into the quoted "auth_key" slot above as valid JSON.
+  (The web-app .env can keep the raw-object form for json.loads.)
+  Run "Test destination connection" first to validate before creating.
+
+  Please note: auth_key must be a single-line JSON string — see BQ_SERVICE_ACCOUNT_KEY in .env-example.
+}

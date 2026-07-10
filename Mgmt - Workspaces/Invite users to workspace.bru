@@ -1,0 +1,38 @@
+meta {
+  name: Invite users to workspace
+  type: http
+  seq: 8
+}
+
+post {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid/users/invites
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+}
+
+body:json {
+  {
+    "invites": [
+      {
+        "email": "someone@example.com",
+        "role": "VIEWER"
+      }
+    ]
+  }
+}
+
+docs {
+  Invites users to a workspace.
+  Required scope: team management (elevated API key).
+
+  Please note: invites accepts exactly one {email, role} per request. role: OWNER, ADMIN, EDITOR, FINANCE, VIEWER.
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Get query
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/:query_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  query_id: qr_51416549
+}
+
+docs {
+  Get query.
+}

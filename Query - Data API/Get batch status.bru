@@ -1,0 +1,20 @@
+meta {
+  name: Get batch status
+  type: http
+  seq: 15
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/batch/:batch_id/status
+  body: none
+  auth: inherit
+}
+
+params:path {
+  batch_id: qrb_d9cda9bd32aa
+}
+
+docs {
+  Returns the execution status of a batch query. Poll this endpoint
+  until all queries in the batch have completed or failed.
+}

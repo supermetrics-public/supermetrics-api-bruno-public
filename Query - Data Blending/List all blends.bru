@@ -1,0 +1,22 @@
+meta {
+  name: List all blends
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/data-blending/blends?type=union
+  body: none
+  auth: inherit
+}
+
+params:query {
+  type: union
+  ~type: join
+}
+
+docs {
+  Lists all data blends for the team. Optional `type` filter: "join" or "union".
+  Requires `data_blending_read` scope. Returns blend_id, display_name,
+  type, blended_data_sources, and modification timestamps.
+}

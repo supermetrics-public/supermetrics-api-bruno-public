@@ -1,0 +1,33 @@
+meta {
+  name: Transform - country code and default
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "GAWA",
+    "ds_accounts": ["123456789"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-07",
+    "fields": [
+      { "id": "country", "transform": "country_code: 'XX' | default: 'UNKNOWN'" },
+      { "id": "sessions" },
+      { "id": "date" }
+    ],
+    "max_rows": 100,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Normalises country names to ISO 3166-1 alpha-2 codes; falls back to 'XX'
+  when no match, then to 'UNKNOWN' if the value is empty/null.
+  Companion filter: country_name (the reverse).
+}

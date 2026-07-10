@@ -1,0 +1,22 @@
+meta {
+  name: Get custom field
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/custom-fields/:custom_field_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  custom_field_id: 71144
+}
+
+docs {
+  Returns a single custom field with its full definition (transformation
+  steps: functions, lookups, conditions), data source bindings,
+  report types, and modification metadata.
+  Requires `custom_fields_read` scope.
+}

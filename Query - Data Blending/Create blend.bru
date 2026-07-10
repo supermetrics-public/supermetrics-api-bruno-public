@@ -1,0 +1,220 @@
+meta {
+  name: Create blend
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/data-blending/blends
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "type": "union",
+    "display_name": "Paid channel mix (API)",
+    "description": "Google Ads + Meta Ads spend and performance, stacked",
+    "blended_data_sources": [
+      {
+        "blend_data_source_id": 1,
+        "blend_data_source_key": "awsource",
+        "data_source_id": "AW",
+        "display_name": "Google Ads",
+        "report_type": null,
+        "data_source_settings": [],
+        "report_type_settings": [],
+        "segments": [],
+        "accounts": [
+          {
+            "account_id": "1234567890",
+            "account_name": "Supermetrics - NAM & EMEA",
+            "group_name": null,
+            "data_source_username": "user@example.com",
+            "data_source_display_username": "user@example.com"
+          }
+        ]
+      },
+      {
+        "blend_data_source_id": 2,
+        "blend_data_source_key": "fasource",
+        "data_source_id": "FA",
+        "display_name": "Facebook Ads",
+        "report_type": null,
+        "data_source_settings": [],
+        "report_type_settings": [],
+        "segments": [],
+        "accounts": [
+          {
+            "account_id": "act_1234567890",
+            "account_name": "Supermetrics",
+            "group_name": null,
+            "data_source_username": "1234567890",
+            "data_source_display_username": "Example User (id: 1234567890)"
+          }
+        ]
+      }
+    ],
+    "config": {
+      "fields": [
+        {
+          "blend_field_name": "date",
+          "blend_field_display_name": "Date",
+          "blend_field_type": "dim",
+          "blend_field_data_type": "string.time.date",
+          "blend_datasource_fields": [
+            {
+              "blend_data_source_id": 1,
+              "datasource_field_name": "Date",
+              "datasource_field_display_name": "Date",
+              "datasource_field_type": "dim",
+              "datasource_field_data_type": "string.time.date",
+              "field_source": "standard",
+              "meta": null
+            },
+            {
+              "blend_data_source_id": 2,
+              "datasource_field_name": "Date",
+              "datasource_field_display_name": "Date",
+              "datasource_field_type": "dim",
+              "datasource_field_data_type": "string.time.date",
+              "field_source": "standard",
+              "meta": null
+            }
+          ]
+        },
+        {
+          "blend_field_name": "campaign_name",
+          "blend_field_display_name": "Campaign name",
+          "blend_field_type": "dim",
+          "blend_field_data_type": "string.text.value",
+          "blend_datasource_fields": [
+            {
+              "blend_data_source_id": 1,
+              "datasource_field_name": "Campaignname",
+              "datasource_field_display_name": "Campaign name",
+              "datasource_field_type": "dim",
+              "datasource_field_data_type": "string.text.value",
+              "field_source": "standard",
+              "meta": null
+            },
+            {
+              "blend_data_source_id": 2,
+              "datasource_field_name": "adcampaign_name",
+              "datasource_field_display_name": "Campaign name",
+              "datasource_field_type": "dim",
+              "datasource_field_data_type": "string.text.value",
+              "field_source": "standard",
+              "meta": null
+            }
+          ]
+        },
+        {
+          "blend_field_name": "impressions",
+          "blend_field_display_name": "Impressions",
+          "blend_field_type": "met",
+          "blend_field_data_type": "int.number.value",
+          "blend_datasource_fields": [
+            {
+              "blend_data_source_id": 1,
+              "datasource_field_name": "Impressions",
+              "datasource_field_display_name": "Impressions",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "int.number.value",
+              "field_source": "standard",
+              "meta": null
+            },
+            {
+              "blend_data_source_id": 2,
+              "datasource_field_name": "impressions",
+              "datasource_field_display_name": "Impressions",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "int.number.value",
+              "field_source": "standard",
+              "meta": null
+            }
+          ]
+        },
+        {
+          "blend_field_name": "clicks",
+          "blend_field_display_name": "Clicks",
+          "blend_field_type": "met",
+          "blend_field_data_type": "int.number.value",
+          "blend_datasource_fields": [
+            {
+              "blend_data_source_id": 1,
+              "datasource_field_name": "Clicks",
+              "datasource_field_display_name": "Clicks",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "int.number.value",
+              "field_source": "standard",
+              "meta": null
+            },
+            {
+              "blend_data_source_id": 2,
+              "datasource_field_name": "Clicks",
+              "datasource_field_display_name": "Clicks (all)",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "int.number.value",
+              "field_source": "standard",
+              "meta": null
+            }
+          ]
+        },
+        {
+          "blend_field_name": "cost",
+          "blend_field_display_name": "Cost",
+          "blend_field_type": "met",
+          "blend_field_data_type": "float.currency.value",
+          "blend_datasource_fields": [
+            {
+              "blend_data_source_id": 1,
+              "datasource_field_name": "Cost",
+              "datasource_field_display_name": "Cost",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "float.currency.value",
+              "field_source": "standard",
+              "meta": null
+            },
+            {
+              "blend_data_source_id": 2,
+              "datasource_field_name": "cost",
+              "datasource_field_display_name": "Amount spent",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "float.currency.value",
+              "field_source": "standard",
+              "meta": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+
+docs {
+  Creates a new data blend. Body is a FLAT JSON object (not wrapped in
+  "data") and all collections are JSON arrays (not {items:[...]} — that
+  nesting only appears in GET responses).
+
+  Types: "union" (stacks rows from each source) or "join" (joins sources
+  on key fields).
+
+  Required top-level fields: type, display_name, blended_data_sources, config.
+
+  Each entry in `blended_data_sources` requires:
+  - blend_data_source_id  (client-assigned integer, e.g. 1, 2; used to
+  wire fields to sources in config.fields — the server keeps it)
+  - blend_data_source_key (unique 8-char lowercase alphanumeric string)
+  - data_source_id, display_name, report_type (null if none)
+  - data_source_settings, report_type_settings, segments (arrays, [] if none)
+  - accounts[] with account_id, account_name, group_name,
+  data_source_username, data_source_display_username
+
+  In `config.fields`, each blend field's `blend_datasource_fields[]` maps
+  the blend field to a per-source field via `blend_data_source_id`.
+  Source field names are case-sensitive per platform (e.g. "Cost" for
+  Google Ads, "cost" for Meta; "Campaignname" vs "adcampaign_name").
+
+  Requires `data_blending_write` scope. Returns 201 with the full blend.
+}

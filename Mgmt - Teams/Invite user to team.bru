@@ -1,0 +1,33 @@
+meta {
+  name: Invite user to team
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://api.supermetrics.com/v1/teams/:team_id/users/invites
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+body:json {
+  {
+    "email": "someone@example.com",
+    "role": "VIEWER"
+  }
+}
+
+docs {
+  Invites a new user to a team.
+  Required scope: team management (elevated API key).
+
+  Please note: Pending invites are listed via "Get workspace pending invitations" on the root workspace, and cancelled via "Update workspace invitation status".
+}

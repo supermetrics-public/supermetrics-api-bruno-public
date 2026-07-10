@@ -1,0 +1,19 @@
+meta {
+  name: List destinations
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/destinations
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+docs {
+  List destinations.
+}

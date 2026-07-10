@@ -1,0 +1,25 @@
+meta {
+  name: Get connector schema
+  type: http
+  seq: 13
+}
+
+get {
+  url: https://api.supermetrics.com/connector_builder/v1/schema/:schema_version
+  body: none
+  auth: inherit
+}
+
+params:path {
+  schema_version: v1
+}
+
+docs {
+  Returns the JSON Schema for validating connector configurations.
+  Use in your IDE for autocomplete and validation:
+  "$schema": "https://api.supermetrics.com/cc/v1/schema/connector"
+
+  The schema defines all 7 connector components: authentication,
+  dataSourceUser, accounts, reporting, defaultResponseHandler,
+  secrets, and signers.
+}

@@ -1,0 +1,52 @@
+meta {
+  name: Update connector
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors/:connector_identifier
+  body: json
+  auth: inherit
+}
+
+params:path {
+  connector_identifier: JDEBE
+}
+
+body:json {
+  {
+    "connector": {
+      "name": "Updated Connector Name",
+      "description": "Updated description for the connector"
+    },
+    "configuration": {
+      "configuration_json": {
+        "$schema": "https://api.supermetrics.com/cc/v1/schema/connector",
+        "reporting": {
+          "reportTypes": [
+            {
+              "id": "example",
+              "title": "Example Report",
+              "config": { "showDateRange": true },
+              "request": {
+                "method": "GET",
+                "url": "https://api.example.com/data",
+                "response": {
+                  "type": "JSON",
+                  "dataRows": { "source": "jsonPath", "value": "$.data.*" }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
+docs {
+  Updates connector metadata and/or its JSON configuration.
+  Both `connector` and `configuration` objects are required.
+  Returns 204 No Content on success.
+}

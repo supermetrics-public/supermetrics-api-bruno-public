@@ -1,0 +1,49 @@
+meta {
+  name: Validate transfer update
+  type: http
+  seq: 7
+}
+
+post {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/transfers/:transfer_id/validations
+  body: json
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  transfer_id: 100000003
+}
+
+body:json {
+  {
+    "data_source_id": "AW",
+    "schema_id": 2,
+    "destination_id": 3513,
+    "display_name": "AW Transfer - Updated",
+    "schedule": [
+      {
+        "run_interval": "daily",
+        "run_hour": 1,
+        "refresh_window": 1,
+        "run_weekday": 1,
+        "run_day": 1
+      }
+    ],
+    "accounts": [
+      {
+        "data_source_username": "string",
+        "login_id": 1,
+        "account_id": "string"
+      }
+    ],
+    "segments": [],
+    "data_source_settings": [],
+    "notification_recipients": [],
+    "transfer_type": 1
+  }
+}
+
+docs {
+  Validate transfer update.
+}

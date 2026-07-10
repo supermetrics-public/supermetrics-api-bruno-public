@@ -1,0 +1,25 @@
+meta {
+  name: Get query history
+  type: http
+  seq: 10
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/history?api_key={{process.env.API_KEY}}&ds_ids=AW&status_codes=SUCCESS
+  body: none
+  auth: none
+}
+
+params:query {
+  api_key: {{process.env.API_KEY}}
+  ds_ids: AW
+  status_codes: SUCCESS
+  ~since: 2025-05-01
+  ~until: 2025-05-02
+  ~offset: 0
+  ~limit: 100
+}
+
+docs {
+  Get query history.
+}

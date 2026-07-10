@@ -1,0 +1,38 @@
+meta {
+  name: Create destination - SNO
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://dts-api.supermetrics.com/v1/teams/%7Bteam_id%7D/destinations
+  body: json
+  auth: inherit
+}
+
+headers {
+  accept: application/json
+  content-type: application/json
+}
+
+body:json {
+  {
+    "type": "DWH_SNOWFLAKE",
+    "display_name": "My Snowflake Destination",
+    "auth_method": "AUTH_METHOD_KEY_PAIR",
+    "fields": {
+      "hostname": "any-domain.my-region.snowflakecomputing.com",
+      "warehouse": "DEMO_WH",
+      "database_name": "TEST_DB",
+      "schema": "PUBLIC",
+      "role": "ACCOUNTADMIN",
+      "username": "USER",
+      "private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----...",
+      "passphrase": "***"
+    }
+  }
+}
+
+docs {
+  Create destination - SNO.
+}

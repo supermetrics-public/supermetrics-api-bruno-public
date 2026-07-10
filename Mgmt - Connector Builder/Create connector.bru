@@ -1,0 +1,23 @@
+meta {
+  name: Create connector
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors
+  body: form-urlencoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  title: My Custom Connector
+  description: Fetches marketing data from a custom API
+  ~connector_identifier: T3S70
+}
+
+docs {
+  Creates a new custom connector. Uses form-urlencoded body.
+  Set `connector_identifier` to duplicate an existing connector.
+  Returns 201 with the connector and its initial configuration.
+}

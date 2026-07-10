@@ -1,0 +1,20 @@
+meta {
+  name: Delete custom field
+  type: http
+  seq: 5
+}
+
+delete {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/custom-fields/:custom_field_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  custom_field_id: 71144
+}
+
+docs {
+  Deletes a custom field. Returns 204 No Content on success.
+  Requires `custom_fields_write` scope.
+}

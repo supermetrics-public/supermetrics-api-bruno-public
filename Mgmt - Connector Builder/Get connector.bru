@@ -1,0 +1,20 @@
+meta {
+  name: Get connector
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors/:connector_identifier
+  body: none
+  auth: inherit
+}
+
+params:path {
+  connector_identifier: Z3823
+}
+
+docs {
+  Returns a single connector with its full configuration JSON,
+  including authentication, reporting, accounts, and error handling.
+}

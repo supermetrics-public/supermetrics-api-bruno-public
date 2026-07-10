@@ -1,0 +1,27 @@
+meta {
+  name: Query data (POST)
+  type: http
+  seq: 12
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "AW",
+    "ds_accounts": ["1234567890"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-02",
+    "fields": ["data_source_name", "campaign_name", "impressions", "cost", "date"],
+    "max_rows": 1000,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Query data (POST).
+}

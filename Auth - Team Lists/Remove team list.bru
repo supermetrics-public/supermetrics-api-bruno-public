@@ -1,0 +1,21 @@
+meta {
+  name: Remove team list
+  type: http
+  seq: 5
+}
+
+delete {
+  url: https://api.supermetrics.com/enterprise/v2/team/list/:list_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  list_id: tl_example
+}
+
+docs {
+  Remove team list.
+
+  Please note: Requires an API key with team-list management scope.
+}

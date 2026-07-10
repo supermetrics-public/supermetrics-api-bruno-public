@@ -1,0 +1,27 @@
+meta {
+  name: Set list data
+  type: http
+  seq: 7
+}
+
+put {
+  url: https://api.supermetrics.com/enterprise/v2/team/list/:list_id/data/account_ids
+  body: json
+  auth: inherit
+}
+
+params:path {
+  list_id: tl_example
+}
+
+body:json {
+  {
+    "data": "123456789\n987654321\n555666777\n111222333"
+  }
+}
+
+docs {
+  Set list data.
+
+  Please note: Requires an API key with team-list management scope.
+}

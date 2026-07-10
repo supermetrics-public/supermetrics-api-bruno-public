@@ -1,0 +1,31 @@
+meta {
+  name: Update workspace
+  type: http
+  seq: 4
+}
+
+patch {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+}
+
+body:json {
+  {
+    "name": "My Renamed Workspace"
+  }
+}
+
+docs {
+  Updates a workspace by UUID.
+  Required scope: team management (elevated API key).
+}

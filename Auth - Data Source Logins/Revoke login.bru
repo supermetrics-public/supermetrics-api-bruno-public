@@ -1,0 +1,19 @@
+meta {
+  name: Revoke login
+  type: http
+  seq: 2
+}
+
+delete {
+  url: https://api.supermetrics.com/v2/ds/login/:login_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  login_id: dsl_5593510
+}
+
+docs {
+  Revoke login.
+}

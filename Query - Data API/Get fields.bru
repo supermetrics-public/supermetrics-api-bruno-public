@@ -1,0 +1,20 @@
+meta {
+  name: Get fields
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/fields?api_key={{process.env.API_KEY}}&ds_id=AW
+  body: none
+  auth: none
+}
+
+params:query {
+  api_key: {{process.env.API_KEY}}
+  ds_id: AW
+}
+
+docs {
+  Get fields.
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Get workspace
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+}
+
+docs {
+  Gets a single workspace by UUID.
+  Required scope: team management (elevated API key).
+}

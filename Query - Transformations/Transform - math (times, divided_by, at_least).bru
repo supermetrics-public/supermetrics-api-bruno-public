@@ -1,0 +1,37 @@
+meta {
+  name: Transform - math (times, divided_by, at_least)
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "AW",
+    "ds_accounts": ["1234567890"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-07",
+    "fields": [
+      { "id": "campaign_name" },
+      { "id": "impressions", "transform": "at_least: 1" },
+      { "id": "cost", "transform": "times: 100" },
+      { "id": "ctr", "transform": "divided_by: 100" },
+      { "id": "date" }
+    ],
+    "max_rows": 100,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Math filters operate on numeric values.
+  - times: multiplies (here, cost in cents)
+  - divided_by: divides
+  - at_least / at_most: floor / cap to threshold
+  - plus / minus / abs / ceil / floor are also available.
+}

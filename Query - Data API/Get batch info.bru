@@ -1,0 +1,20 @@
+meta {
+  name: Get batch info
+  type: http
+  seq: 14
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/batch/:batch_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  batch_id: qrb_d9cda9bd32aa
+}
+
+docs {
+  Returns information about a batch query including the list of
+  queries submitted and their individual statuses.
+}

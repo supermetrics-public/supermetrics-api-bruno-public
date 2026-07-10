@@ -1,0 +1,32 @@
+meta {
+  name: Get data - BLEND
+  type: http
+  seq: 20
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "BLEND",
+    "ds_accounts": ["39849"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-07",
+    "fields": ["data_source_name", "campaign_name", "impressions", "date"],
+    "max_rows": 1000,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Data blends are queried like any data source. The blend's id (created
+  in the Hub UI under Manage → Data blending) goes into `ds_accounts`.
+  Confirm the exact `ds_id` and account id format in the Hub — `BLEND`
+  here is a placeholder. Blending is Enterprise-only.
+
+  Please note: Replace ds_accounts with account IDs your key can access (see "Get accounts").
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Get connector logs
+  type: http
+  seq: 10
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors/:connector_identifier/logs
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 100
+  ~before: 2025-06-01T00:00:00Z
+}
+
+params:path {
+  connector_identifier: Z3823
+}
+
+docs {
+  Returns execution logs for a connector. Each entry includes:
+  log_time, status (HTTP code), event type, request method/path,
+  duration_ms, and request_id. Paginate with `before` (ISO 8601)
+  and `limit` (1-1000, default 100).
+}

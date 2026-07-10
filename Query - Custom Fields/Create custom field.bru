@@ -1,0 +1,55 @@
+meta {
+  name: Create custom field
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/custom-fields
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "display_name": "Cost per Click (USD)",
+    "description": "Calculates CPC by dividing cost by clicks",
+    "field_type": "met",
+    "data_type": "float.number.value",
+    "data_source": {
+      "data_source_id": "AW",
+      "report_type": null
+    },
+    "definition": [
+      {
+        "type": "function",
+        "name": "div",
+        "arguments": [
+          {
+            "name": "dividend",
+            "value": {
+              "type": "data_source_field",
+              "value": "Cost"
+            }
+          },
+          {
+            "name": "divisor",
+            "value": {
+              "type": "data_source_field",
+              "value": "Clicks"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+
+docs {
+  Creates a new custom field. data_source is an object with
+  data_source_id and report_type (null for default). Function names
+  use short forms: div, mul, sum, subtract, abs, ceil, floor, etc.
+  Arguments use {name, value: {type: "data_source_field", value: "FieldId"}}.
+  Field IDs are case-sensitive (e.g. "Cost" not "cost" for Google Ads).
+  Requires `custom_fields_write` scope. Returns 201 with the field.
+}

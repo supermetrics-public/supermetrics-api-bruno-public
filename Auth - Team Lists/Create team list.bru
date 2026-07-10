@@ -1,0 +1,27 @@
+meta {
+  name: Create team list
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/team/list
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "list_slug": "marketing_accounts",
+    "list_name": "Marketing Team Account IDs",
+    "list_type": "account_ids",
+    "ds_id": "GAWA",
+    "show_in_products": ["API", "DWH"]
+  }
+}
+
+docs {
+  Create team list.
+
+  Please note: Requires an API key with team-list management scope.
+}

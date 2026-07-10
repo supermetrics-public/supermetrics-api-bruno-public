@@ -1,0 +1,19 @@
+meta {
+  name: Close login link
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://api.supermetrics.com/enterprise/v2/ds/login/link/:link_id/close
+  body: none
+  auth: inherit
+}
+
+params:path {
+  link_id: dsll_159481
+}
+
+docs {
+  Close login link.
+}

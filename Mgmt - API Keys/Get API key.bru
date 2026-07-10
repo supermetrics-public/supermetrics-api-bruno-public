@@ -1,0 +1,21 @@
+meta {
+  name: Get API key
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/api_key/:api_key_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  api_key_id: ak_example
+}
+
+docs {
+  Gets a single API key by id.
+
+  Please note: These endpoints require an OAuth access token; a standard API key is not accepted.
+}

@@ -1,0 +1,30 @@
+meta {
+  name: Update team properties
+  type: http
+  seq: 2
+}
+
+patch {
+  url: https://api.supermetrics.com/v1/teams/:team_id
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+body:json {
+  {
+    "name": "DES - Management Workspace"
+  }
+}
+
+docs {
+  Updates team properties.
+  Required scope: team management (elevated API key).
+}

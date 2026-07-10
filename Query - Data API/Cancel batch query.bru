@@ -1,0 +1,22 @@
+meta {
+  name: Cancel batch query
+  type: http
+  seq: 16
+}
+
+delete {
+  url: https://api.supermetrics.com/enterprise/v2/query/batch/:batch_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  batch_id: qrb_5e2b6a20d258
+}
+
+docs {
+  Cancels a running batch query. Any queries that have already
+  completed will retain their results.
+
+  Please note: Pass api_key as a query parameter, as with the other batch requests.
+}

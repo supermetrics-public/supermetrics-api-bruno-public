@@ -1,0 +1,30 @@
+meta {
+  name: Get query results
+  type: http
+  seq: 9
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/results?api_key={{process.env.API_KEY}}&schedule_id=qrb_d9cda9bd32aa_query_1
+  body: none
+  auth: none
+}
+
+params:query {
+  api_key: {{process.env.API_KEY}}
+  schedule_id: qrb_d9cda9bd32aa_query_1
+  ~offset: 0
+  ~limit: 1000
+}
+
+docs {
+  Fetches the rows of a completed async query. Replace the hard-coded
+  `schedule_id` with the fresh value returned by "Get data - <ds> - Async"
+  (HTTP 202) — the sample id here is stale and will return STATUS_NOT_FOUND.
+
+  Enable `offset`/`limit` (remove the `~` prefix) to page through large
+  result sets. Results are retrievable for up to 1h after completion.
+  See https://docs.supermetrics.com/apidocs/async-queries
+
+  Please note: Use a schedule_id returned by a scheduled/batch query.
+}

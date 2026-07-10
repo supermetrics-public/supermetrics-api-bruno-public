@@ -1,0 +1,27 @@
+meta {
+  name: List workspace license pool licenses
+  type: http
+  seq: 13
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid/license-pool/licenses
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+}
+
+docs {
+  Gets licenses associated with a workspace license pool.
+  Required scope: team management (elevated API key).
+
+  Please note: License-pool endpoints operate on a root (zero-level) workspace. Each entry is one sub-workspace's allocation; use its license_id with "Deallocate ...".
+}

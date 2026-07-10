@@ -1,0 +1,34 @@
+meta {
+  name: Transform - default and country_name
+  type: http
+  seq: 10
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "GAWA",
+    "ds_accounts": ["123456789"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-07",
+    "fields": [
+      { "id": "country", "transform": "default: '(not set)'" },
+      { "id": "countryIsoCode", "transform": "country_name" },
+      { "id": "sessions" },
+      { "id": "date" }
+    ],
+    "max_rows": 100,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  `default: '<value>'` replaces empty/null values with a fallback.
+  `country_name` converts ISO 3166-1 alpha-2 codes to full country
+  names — the reverse of `country_code`. Both are lookup filters.
+}

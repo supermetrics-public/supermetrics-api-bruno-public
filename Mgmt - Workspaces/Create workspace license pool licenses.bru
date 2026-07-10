@@ -1,0 +1,38 @@
+meta {
+  name: Create workspace license pool licenses
+  type: http
+  seq: 14
+}
+
+post {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid/license-pool/licenses
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+}
+
+body:json {
+  {
+    "target_workspaces_uuid_list": ["<sub-workspace-uuid>"],
+    "data_sources": ["FA"],
+    "destinations": ["API"],
+    "seats_number": 1,
+    "max_accounts_per_data_source": 1
+  }
+}
+
+docs {
+  Creates licenses for a workspace license pool (allocates a license from the
+  root pool to one or more sub-workspaces).
+  Required scope: team management (elevated API key).
+
+  Please note: Root (zero-level) workspace only. Allocates from the pool to sub-workspaces; requires target_workspaces_uuid_list, data_sources, destinations, seats_number, max_accounts_per_data_source, and draws on the pool's remaining capacity.
+}

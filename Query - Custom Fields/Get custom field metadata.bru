@@ -1,0 +1,19 @@
+meta {
+  name: Get custom field metadata
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/custom-fields/metadata
+  body: none
+  auth: inherit
+}
+
+docs {
+  Returns metadata for building custom fields: available transformation
+  functions (with argument specs), condition/lookup matching rules,
+  valid field_data_types, output_data_types with labels, and the
+  max number of transformation steps allowed.
+  Requires `custom_fields_read` scope.
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Get datasource configuration
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://dts-api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/datasource/:data_source_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  data_source_id: AW
+}
+
+docs {
+  Returns configuration details for a data source within a team,
+  including available schemas, fields, settings, and segment options.
+  Used when building transfer configurations.
+
+  Please note: Provide a data source id valid for your team (confirm via "Search data sources").
+}

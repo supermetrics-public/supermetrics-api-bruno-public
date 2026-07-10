@@ -1,0 +1,21 @@
+meta {
+  name: Get blend by ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/data-blending/blends/:blend_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  blend_id: 39849
+}
+
+docs {
+  Returns a single blend with full configuration: field mappings,
+  join definitions, blended data sources with accounts/segments.
+  Requires `data_blending_read` scope.
+}

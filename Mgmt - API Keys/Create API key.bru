@@ -1,0 +1,26 @@
+meta {
+  name: Create API key
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/api_keys
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "key_type": "query",
+    "description": "Marketing team API key",
+    "scope_names": ["ds_queries_read", "ds_queries_run", "table_groups_read"],
+    "is_enabled": true
+  }
+}
+
+docs {
+  Create API key.
+
+  Please note: These endpoints require an OAuth access token. There is no delete endpoint — disable a key via "Update API key" (is_enabled: false).
+}

@@ -1,0 +1,17 @@
+meta {
+  name: Get team settings
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/team/settings
+  body: none
+  auth: inherit
+}
+
+docs {
+  Get team settings.
+
+  Please note: Requires an API key with team-settings scope.
+}

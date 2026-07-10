@@ -1,0 +1,24 @@
+meta {
+  name: Get team details
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/:team_id
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+docs {
+  Gets team details by team ID.
+  Required scope: team management (elevated API key).
+}

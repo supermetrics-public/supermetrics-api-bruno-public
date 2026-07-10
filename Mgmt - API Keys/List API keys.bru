@@ -1,0 +1,17 @@
+meta {
+  name: List API keys
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/api_keys
+  body: none
+  auth: inherit
+}
+
+docs {
+  Lists API keys.
+
+  Please note: These endpoints require an OAuth access token; a standard API key is not accepted.
+}

@@ -1,0 +1,33 @@
+meta {
+  name: Transform - currency conversion
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "AW",
+    "ds_accounts": ["1234567890"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-07",
+    "fields": [
+      { "id": "campaign_name" },
+      { "id": "cost", "transform": "currency: 'eur'" },
+      { "id": "date" }
+    ],
+    "max_rows": 100,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  `currency: '<symbol>'` converts numeric monetary fields using historical
+  exchange rates (rate for the row's date). Symbol is required.
+  May not be supported for all data sources yet.
+}

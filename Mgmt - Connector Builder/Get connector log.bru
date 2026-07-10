@@ -1,0 +1,22 @@
+meta {
+  name: Get connector log
+  type: http
+  seq: 14
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors/:connector_identifier/logs/:log_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  connector_identifier: T3S70
+  log_id: log_abc123
+}
+
+docs {
+  Returns a single connector log entry by ID. Includes log_time,
+  status (HTTP code), event type, request method/path, duration_ms,
+  and request_id.
+}

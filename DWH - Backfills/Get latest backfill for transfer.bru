@@ -1,0 +1,20 @@
+meta {
+  name: Get latest backfill for transfer
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/transfers/:transfer_id/backfills/latest
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  transfer_id: 100000003
+}
+
+docs {
+  Get latest backfill for transfer.
+}

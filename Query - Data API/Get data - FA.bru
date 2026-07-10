@@ -1,0 +1,28 @@
+meta {
+  name: Get data - FA
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json?ds_id=FA&ds_accounts=act_1234567890&start_date=2025-05-01&end_date=2025-05-02&max_rows=1000&api_key={{process.env.API_KEY}}&fields=data_source_name,campaign_name,impressions,currency,amount_spent,date
+  body: none
+  auth: none
+}
+
+params:query {
+  ds_id: FA
+  ds_accounts: act_1234567890
+  start_date: 2025-05-01
+  end_date: 2025-05-02
+  max_rows: 1000
+  api_key: {{process.env.API_KEY}}
+  fields: data_source_name,campaign_name,impressions,currency,amount_spent,date
+  ~date_range_type: last_7_days
+}
+
+docs {
+  Get data - FA.
+
+  Please note: Replace ds_accounts with account IDs your key can access (see "Get accounts").
+}

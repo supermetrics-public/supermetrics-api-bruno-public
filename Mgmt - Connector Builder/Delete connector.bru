@@ -1,0 +1,19 @@
+meta {
+  name: Delete connector
+  type: http
+  seq: 5
+}
+
+delete {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors/:connector_identifier
+  body: none
+  auth: inherit
+}
+
+params:path {
+  connector_identifier: JDEBE
+}
+
+docs {
+  Deletes a custom connector. Returns 204 No Content on success.
+}

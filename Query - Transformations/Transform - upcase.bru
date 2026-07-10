@@ -1,0 +1,32 @@
+meta {
+  name: Transform - upcase
+  type: http
+  seq: 7
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "AW",
+    "ds_accounts": ["1234567890"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-02",
+    "fields": [
+      { "id": "campaign_name", "transform": "upcase" },
+      { "id": "impressions" },
+      { "id": "date" }
+    ],
+    "max_rows": 100,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Converts campaign_name to uppercase. Companion to `downcase`.
+  Both are simple string filters that take no arguments.
+}

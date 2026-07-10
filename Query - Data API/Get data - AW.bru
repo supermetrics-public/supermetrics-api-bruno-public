@@ -1,0 +1,28 @@
+meta {
+  name: Get data - AW
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json?ds_id=AW&ds_accounts=1234567890&start_date=2025-05-01&end_date=2025-05-02&max_rows=1000&api_key={{process.env.API_KEY}}&fields=data_source_name,campaign_name,impressions,currency,cost,date
+  body: none
+  auth: none
+}
+
+params:query {
+  ds_id: AW
+  ds_accounts: 1234567890
+  start_date: 2025-05-01
+  end_date: 2025-05-02
+  max_rows: 1000
+  api_key: {{process.env.API_KEY}}
+  fields: data_source_name,campaign_name,impressions,currency,cost,date
+  ~date_range_type: last_7_days
+}
+
+docs {
+  Get data - AW.
+
+  Please note: Replace ds_accounts with account IDs your key can access (see "Get accounts").
+}

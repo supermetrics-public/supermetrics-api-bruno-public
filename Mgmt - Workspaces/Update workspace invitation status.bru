@@ -1,0 +1,34 @@
+meta {
+  name: Update workspace invitation status
+  type: http
+  seq: 10
+}
+
+patch {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid/users/invites
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+}
+
+body:json {
+  {
+    "email": "someone@example.com",
+    "status": "cancelled"
+  }
+}
+
+docs {
+  Updates invitation status for a workspace.
+  Required scope: team management (elevated API key).
+
+  Please note: Use status "cancelled" to revoke a pending invite (the only supported status change).
+}

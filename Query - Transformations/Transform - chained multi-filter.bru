@@ -1,0 +1,46 @@
+meta {
+  name: Transform - chained multi-filter
+  type: http
+  seq: 11
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "AW",
+    "ds_accounts": ["1234567890"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-07",
+    "fields": [
+      {
+        "id": "campaign_name",
+        "transform": "downcase | regexp_replace: '[^a-z0-9]+', '_' | default: 'unknown'"
+      },
+      {
+        "id": "cost",
+        "transform": "currency: 'eur' | times: 100 | ceil | divided_by: 100"
+      },
+      { "id": "impressions", "transform": "at_least: 1" },
+      { "id": "date" }
+    ],
+    "max_rows": 100,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Demonstrates chaining multiple filters via `|` pipe (Liquid syntax):
+
+  campaign_name: lowercase → slugify with regex → fallback for empties
+  cost: convert to EUR → round to 2 decimal places via times/ceil/div
+  impressions: floor to minimum 1
+
+  Filters execute left-to-right; each receives the output of the
+  previous filter. Any filter combination is valid as long as the
+  data type is compatible.
+}

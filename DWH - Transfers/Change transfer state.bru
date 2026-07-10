@@ -1,0 +1,26 @@
+meta {
+  name: Change transfer state
+  type: http
+  seq: 10
+}
+
+put {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/transfers/:transfer_id/state
+  body: json
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  transfer_id: 100000003
+}
+
+body:json {
+  {
+    "transfer_state": "pause"
+  }
+}
+
+docs {
+  Change transfer state.
+}

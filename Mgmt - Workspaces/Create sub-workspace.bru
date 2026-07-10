@@ -1,0 +1,33 @@
+meta {
+  name: Create sub-workspace
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+body:json {
+  {
+    "name": "My New Workspace",
+    "parent_workspace_id": "00000000-0000-0000-0000-000000000000"
+  }
+}
+
+docs {
+  Creates a new sub-workspace.
+  Required scope: team management (elevated API key).
+
+  Please note: Requires parent_workspace_id — the UUID of a root (zero-level) workspace from "List workspaces" (the one whose parent_id is null).
+}

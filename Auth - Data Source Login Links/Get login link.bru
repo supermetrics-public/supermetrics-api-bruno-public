@@ -1,0 +1,19 @@
+meta {
+  name: Get login link
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/ds/login/link/:link_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  link_id: dsll_282368
+}
+
+docs {
+  Get login link.
+}

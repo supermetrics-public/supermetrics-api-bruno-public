@@ -1,0 +1,52 @@
+meta {
+  name: Update custom field
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/custom-fields/:custom_field_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  custom_field_id: 71144
+}
+
+body:json {
+  {
+    "display_name": "Cost per Click (EUR)",
+    "description": "Calculates CPC in EUR using the currency function",
+    "data_type": "float.number.value",
+    "definition": [
+      {
+        "type": "function",
+        "name": "div",
+        "arguments": [
+          {
+            "name": "dividend",
+            "value": {
+              "type": "data_source_field",
+              "value": "Cost"
+            }
+          },
+          {
+            "name": "divisor",
+            "value": {
+              "type": "data_source_field",
+              "value": "Clicks"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+
+docs {
+  Updates an existing custom field. Function names use short forms
+  (div, mul, sum, subtract). Arguments use
+  {name, value: {type: "data_source_field", value: "FieldId"}}.
+  Requires `custom_fields_write` scope.
+}

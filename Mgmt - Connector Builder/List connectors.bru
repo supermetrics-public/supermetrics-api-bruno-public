@@ -1,0 +1,22 @@
+meta {
+  name: List connectors
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~include_configs: true
+}
+
+docs {
+  Lists all custom connectors for the team. Set `include_configs=true`
+  to include the full JSON configuration in each response.
+  Returns connector_identifier, name, description, logo_url,
+  created_at, updated_at.
+}

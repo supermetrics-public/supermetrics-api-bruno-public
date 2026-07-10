@@ -1,0 +1,28 @@
+meta {
+  name: Update team list
+  type: http
+  seq: 4
+}
+
+patch {
+  url: https://api.supermetrics.com/enterprise/v2/team/list/:list_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  list_id: tl_example
+}
+
+body:json {
+  {
+    "list_name": "Updated Marketing Team Account IDs",
+    "show_in_products": ["API", "DWH", "MND"]
+  }
+}
+
+docs {
+  Update team list.
+
+  Please note: Requires an API key with team-list management scope.
+}

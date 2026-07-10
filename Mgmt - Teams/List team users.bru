@@ -1,0 +1,24 @@
+meta {
+  name: List team users
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/:team_id/users
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+docs {
+  Lists all users in a team.
+  Required scope: team management (elevated API key).
+}

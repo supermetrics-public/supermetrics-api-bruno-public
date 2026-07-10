@@ -1,0 +1,83 @@
+meta {
+  name: Update blend
+  type: http
+  seq: 5
+}
+
+put {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/data-blending/blends/:blend_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  blend_id: 58097
+}
+
+body:json {
+  {
+    "display_name": "Paid channel mix",
+    "description": "Combines spend data from Google Ads, Meta Ads, and LinkedIn Ads",
+    "blended_data_sources": [
+      {
+        "blend_data_source_id": 100000004,
+        "data_source_id": "FA",
+        "display_name": "Facebook Ads",
+        "report_type": null,
+        "report_type_settings": [],
+        "data_source_settings": [],
+        "accounts": [
+          { "account_id": "act_1234567890" }
+        ],
+        "segments": []
+      },
+      {
+        "blend_data_source_id": 100000005,
+        "data_source_id": "AW",
+        "display_name": "Google Ads",
+        "report_type": null,
+        "report_type_settings": [],
+        "data_source_settings": [],
+        "accounts": [
+          { "account_id": "1234567890" }
+        ],
+        "segments": []
+      }
+    ],
+    "config": {
+      "fields": [
+        {
+          "blend_field_name": "impressions",
+          "blend_field_display_name": "Impressions",
+          "blend_datasource_fields": [
+            {
+              "blend_data_source_id": 100000004,
+              "datasource_field_name": "impressions",
+              "datasource_field_display_name": "Impressions",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "int.number.value",
+              "field_source": "standard",
+              "meta": null
+            },
+            {
+              "blend_data_source_id": 100000005,
+              "datasource_field_name": "Impressions",
+              "datasource_field_display_name": "Impressions",
+              "datasource_field_type": "met",
+              "datasource_field_data_type": "int.number.value",
+              "field_source": "standard",
+              "meta": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+
+docs {
+  Updates an existing blend. Use `blend_data_source_id` (integer) to
+  reference existing sources. Field names are case-sensitive per data
+  source (e.g. "Impressions" for Google Ads, "impressions" for Meta).
+  Requires `data_blending_write` scope.
+}

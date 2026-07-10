@@ -1,0 +1,19 @@
+meta {
+  name: List incomplete backfills
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/backfills
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+docs {
+  List incomplete backfills.
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Upload connector logo
+  type: http
+  seq: 12
+}
+
+post {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors/:connector_identifier/logo
+  body: multipartForm
+  auth: inherit
+}
+
+params:path {
+  connector_identifier: T3S70
+}
+
+body:multipart-form {
+  logo: @file(/path/to/logo.png)
+}
+
+docs {
+  Uploads a logo image for the connector. Send as multipart/form-data
+  with a `logo` file field. Returns 201 with the new logo_url.
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Get connector logo
+  type: http
+  seq: 11
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/connector_builder/connectors/:connector_identifier/logo
+  body: none
+  auth: inherit
+}
+
+params:path {
+  connector_identifier: Z3823
+}
+
+docs {
+  Returns the logo URL for a connector.
+  Default: https://assets.supermetrics.com/images/dsLogos/Custom_Connector_Default.png
+}

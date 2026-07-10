@@ -1,0 +1,19 @@
+meta {
+  name: Get available sources
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/transfers/available-sources
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+docs {
+  Get available sources.
+}

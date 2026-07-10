@@ -1,0 +1,24 @@
+meta {
+  name: List login accounts
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/ds/login/:login_id/accounts
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~offset: 0
+  ~limit: 100
+}
+
+params:path {
+  login_id: dsl_5229906
+}
+
+docs {
+  List login accounts.
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Create backfill
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/transfers/:transfer_id/backfills
+  body: json
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  transfer_id: 100000003
+}
+
+body:json {
+  {
+    "range_start": "2026-01-01",
+    "range_end": "2026-01-31"
+  }
+}
+
+docs {
+  Create backfill.
+}

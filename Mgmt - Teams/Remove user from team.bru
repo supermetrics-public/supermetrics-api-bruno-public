@@ -1,0 +1,27 @@
+meta {
+  name: Remove user from team
+  type: http
+  seq: 6
+}
+
+delete {
+  url: https://api.supermetrics.com/v1/teams/:team_id/users/:user_id
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  user_id: 12345
+}
+
+docs {
+  Removes a user from the team.
+  Required scope: team management (elevated API key).
+
+  Please note: Removal is permanent; re-adding a user requires a fresh invitation they must accept.
+}

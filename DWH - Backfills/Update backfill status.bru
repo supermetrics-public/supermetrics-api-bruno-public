@@ -1,0 +1,26 @@
+meta {
+  name: Update backfill status
+  type: http
+  seq: 5
+}
+
+patch {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/backfills/:backfill_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  backfill_id: 228359
+}
+
+body:json {
+  {
+    "status": "CANCELLED"
+  }
+}
+
+docs {
+  Update backfill status.
+}

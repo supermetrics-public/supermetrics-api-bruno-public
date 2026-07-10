@@ -1,0 +1,64 @@
+meta {
+  name: Create Transfer
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/transfers
+  body: json
+  auth: inherit
+}
+
+params:path {
+  team_id: 100000002
+}
+
+body:json {
+  {
+    "data_source_id": "AW",
+    "schema_id": 2,
+    "destination_id": 3513,
+    "display_name": "AW enhanced 2022-11-17",
+    "schedule": [
+      {
+        "run_interval": "daily",
+        "run_hour": 1,
+        "refresh_window": 1,
+        "run_weekday": 1,
+        "run_day": 1
+      }
+    ],
+    "accounts": [
+      {
+        "data_source_username": "string",
+        "login_id": 1,
+        "account_id": "string"
+      }
+    ],
+    "segments": [
+      {
+        "data_source_username": "string",
+        "login_id": 1,
+        "segment_id": "string",
+        "segment_name": "string"
+      }
+    ],
+    "data_source_settings": [
+      {
+        "field_id": "string",
+        "value": "string",
+        "group": "string"
+      }
+    ],
+    "notification_recipients": [
+      "user1@example.com",
+      "user2@example.com"
+    ],
+    "transfer_type": 1
+  }
+}
+
+docs {
+  Create Transfer.
+}

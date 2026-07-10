@@ -1,0 +1,15 @@
+meta {
+  name: List logins
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/ds/logins
+  body: none
+  auth: inherit
+}
+
+docs {
+  List logins.
+}

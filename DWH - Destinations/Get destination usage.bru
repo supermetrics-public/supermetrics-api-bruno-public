@@ -1,0 +1,20 @@
+meta {
+  name: Get destination usage
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/destinations/:destination_id/usage
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  destination_id: 3513
+}
+
+docs {
+  Get destination usage.
+}

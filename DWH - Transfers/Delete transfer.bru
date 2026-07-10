@@ -1,0 +1,20 @@
+meta {
+  name: Delete transfer
+  type: http
+  seq: 9
+}
+
+delete {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/transfers/:transfer_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  transfer_id: 100000003
+}
+
+docs {
+  Delete transfer.
+}

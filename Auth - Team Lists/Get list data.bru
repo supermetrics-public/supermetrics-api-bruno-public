@@ -1,0 +1,21 @@
+meta {
+  name: Get list data
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/team/list/:list_id/data/account_ids
+  body: none
+  auth: inherit
+}
+
+params:path {
+  list_id: tl_example
+}
+
+docs {
+  Get list data.
+
+  Please note: Requires an API key with team-list management scope.
+}

@@ -1,0 +1,34 @@
+meta {
+  name: Update workspace user role
+  type: http
+  seq: 6
+}
+
+patch {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid/users/:user_id
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+  user_id: 12345
+}
+
+body:json {
+  {
+    "role": "VIEWER"
+  }
+}
+
+docs {
+  Updates a workspace user's role.
+  Required scope: team management (elevated API key).
+
+  Please note: role must be one of: OWNER, ADMIN, EDITOR, FINANCE, VIEWER.
+}

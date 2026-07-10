@@ -1,0 +1,17 @@
+meta {
+  name: List custom fields
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/v2/v1/teams/{{process.env.TEAM_ID}}/custom-fields
+  body: none
+  auth: inherit
+}
+
+docs {
+  Lists all custom fields for the team. Returns id, display_name,
+  field_type (dim/met), data_type, data_source_id, definition,
+  and modification timestamps. Requires `custom_fields_read` scope.
+}

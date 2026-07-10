@@ -1,0 +1,27 @@
+meta {
+  name: Get query status
+  type: http
+  seq: 8
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/status?api_key={{process.env.API_KEY}}&schedule_id=qrb_d9cda9bd32aa_query_1
+  body: none
+  auth: none
+}
+
+params:query {
+  api_key: {{process.env.API_KEY}}
+  schedule_id: qrb_d9cda9bd32aa_query_1
+}
+
+docs {
+  Polls the status of an async query. Replace the hard-coded `schedule_id`
+  with the fresh value returned by "Get data - <ds> - Async" (HTTP 202) —
+  the sample id here is stale and will return STATUS_NOT_FOUND.
+
+  Status/results are retrievable for up to 1h after the query completes.
+  See https://docs.supermetrics.com/apidocs/async-queries
+
+  Please note: Use a schedule_id returned by a scheduled/batch query.
+}

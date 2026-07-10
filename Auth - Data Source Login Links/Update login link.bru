@@ -1,0 +1,25 @@
+meta {
+  name: Update login link
+  type: http
+  seq: 5
+}
+
+patch {
+  url: https://api.supermetrics.com/enterprise/v2/ds/login/link/:link_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  link_id: dsll_175157
+}
+
+body:json {
+  {
+    "description": "Updated login link description"
+  }
+}
+
+docs {
+  Update login link.
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Update API key
+  type: http
+  seq: 4
+}
+
+patch {
+  url: https://api.supermetrics.com/enterprise/v2/api_key/:api_key_id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  api_key_id: ak_example
+}
+
+body:json {
+  {
+    "description": "Updated marketing team API key",
+    "scope_names": ["ds_queries_read", "ds_queries_run", "table_groups_read", "team_lists_read"],
+    "is_enabled": true
+  }
+}
+
+docs {
+  Updates an API key (description, scope_names, is_enabled). Body is a best-guess
+
+  Please note: These endpoints require an OAuth access token; a standard API key is not accepted.
+}

@@ -1,0 +1,24 @@
+meta {
+  name: List workspaces
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+docs {
+  Gets a list of workspaces for a team.
+  Required scope: team management (elevated API key).
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Get segments
+  type: http
+  seq: 11
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/segments?api_key={{process.env.API_KEY}}&ds_id=FA
+  body: none
+  auth: none
+}
+
+params:query {
+  api_key: {{process.env.API_KEY}}
+  ds_id: FA
+  ~ds_users: 
+}
+
+docs {
+  Get segments.
+}

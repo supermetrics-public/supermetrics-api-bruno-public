@@ -1,0 +1,40 @@
+meta {
+  name: Transform - math (plus, minus, abs, ceil, floor)
+  type: http
+  seq: 9
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/data/json
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "ds_id": "AW",
+    "ds_accounts": ["1234567890"],
+    "start_date": "2025-05-01",
+    "end_date": "2025-05-07",
+    "fields": [
+      { "id": "campaign_name" },
+      { "id": "cost", "transform": "plus: 0.005 | floor" },
+      { "id": "ctr", "transform": "times: 100 | abs | ceil" },
+      { "id": "impressions", "transform": "minus: 0" },
+      { "id": "date" }
+    ],
+    "max_rows": 100,
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Additional math filters beyond times/divided_by/at_least/at_most:
+  - plus: adds a value
+  - minus: subtracts a value
+  - abs: absolute value (no argument)
+  - ceil: rounds up to nearest integer (no argument)
+  - floor: rounds down to nearest integer (no argument)
+  Filters chain via `|` — here cost is rounded down, ctr is
+  multiplied by 100, made absolute, then rounded up.
+}

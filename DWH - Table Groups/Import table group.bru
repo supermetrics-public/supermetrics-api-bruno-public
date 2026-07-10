@@ -1,0 +1,294 @@
+meta {
+  name: Import table group
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/table/group/import
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "version": 1,
+    "group": {
+      "group_id": "tg_15503",
+      "group_name": "FA_CUSTOM_IMPORTED",
+      "ds_id": "FA",
+      "table_prefix": "FBADS_"
+    },
+    "tables": [
+      {
+        "table_name": "CAMPAIGN_2025",
+        "table_partition": "date",
+        "report_type": null,
+        "fields": {
+          "adcampaign_name": "adcampaign_name",
+          "Date": "Date",
+          "Clicks": "Clicks",
+          "cost": "cost",
+          "impressions": "impressions"
+        }
+      },
+      {
+        "table_name": "AD",
+        "table_partition": "date",
+        "report_type": null,
+        "fields": {
+          "ad_name": "ad_name",
+          "adcampaign_name": "adcampaign_name",
+          "adset_name": "adset_name",
+          "Date": "Date",
+          "Clicks": "Clicks",
+          "cost": "cost",
+          "impressions": "impressions"
+        }
+      },
+      {
+        "table_name": "REACH_7_DAYS",
+        "table_partition": "none",
+        "report_type": null,
+        "fields": {
+          "profile": "Accountname_fromFA",
+          "adcampaign_name": "adcampaign_name",
+          "Clicks": "Clicks",
+          "Frequency": "Frequency",
+          "impressions": "impressions",
+          "reach": "reach"
+        }
+      },
+      {
+        "table_name": "GEO",
+        "table_partition": "date",
+        "report_type": null,
+        "fields": {
+          "profileID": "AccountID_fromFA",
+          "profile": "Accountname_fromFA",
+          "ad_id": "ad_id",
+          "ad_name": "ad_name",
+          "adcampaign_id": "adcampaign_id",
+          "adcampaign_name": "adcampaign_name",
+          "adset_id": "adset_id",
+          "adset_name": "adset_name",
+          "adsetstatus": "adsetstatus",
+          "campaignobjective": "campaignobjective",
+          "Country": "Country",
+          "Countryname": "Countryname",
+          "dataSourceName": "dataSourceName",
+          "Date": "Date",
+          "Region": "Region",
+          "action_leadgen.other": "action_leadgen.other",
+          "action_link_click": "action_link_click",
+          "action_video_view": "action_video_view",
+          "Clicks": "Clicks",
+          "cost": "cost",
+          "cost_eur": "cost_eur",
+          "cost_gbp": "cost_gbp",
+          "cost_usd": "cost_usd",
+          "impressions": "impressions",
+          "onsite_conversion.lead_grouped": "onsite_conversion.lead_grouped",
+          "reach": "reach"
+        }
+      }
+    ],
+    "fields": [
+      {
+        "field_id": "adcampaign_name",
+        "field_name": "adcampaign_name",
+        "display_name": "Campaign name",
+        "target_name": "campaign_name",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "Date",
+        "field_name": "Date",
+        "display_name": "Date",
+        "target_name": "date",
+        "data_type": "string.time.date"
+      },
+      {
+        "field_id": "Clicks",
+        "field_name": "Clicks",
+        "display_name": "Clicks (all)",
+        "target_name": "clicks",
+        "data_type": "int.number.value"
+      },
+      {
+        "field_id": "cost",
+        "field_name": "cost",
+        "display_name": "Cost",
+        "target_name": "cost",
+        "data_type": "float.currency.value"
+      },
+      {
+        "field_id": "impressions",
+        "field_name": "impressions",
+        "display_name": "Impressions",
+        "target_name": "impressions",
+        "data_type": "int.number.value"
+      },
+      {
+        "field_id": "ad_name",
+        "field_name": "ad_name",
+        "display_name": "Ad name",
+        "target_name": "ad_name",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "adset_name",
+        "field_name": "adset_name",
+        "display_name": "Ad set name",
+        "target_name": "ad_group_name",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "Accountname_fromFA",
+        "field_name": "profile",
+        "display_name": "Account name",
+        "target_name": "profile",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "Frequency",
+        "field_name": "Frequency",
+        "display_name": "Frequency",
+        "target_name": "frequency",
+        "data_type": "float.number.value"
+      },
+      {
+        "field_id": "reach",
+        "field_name": "reach",
+        "display_name": "Reach",
+        "target_name": "reach",
+        "data_type": "int.number.value"
+      },
+      {
+        "field_id": "AccountID_fromFA",
+        "field_name": "profileID",
+        "display_name": "Account ID",
+        "target_name": "profile_id",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "ad_id",
+        "field_name": "ad_id",
+        "display_name": "Ad ID",
+        "target_name": "ad_id",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "adcampaign_id",
+        "field_name": "adcampaign_id",
+        "display_name": "Campaign ID",
+        "target_name": "campaign_id",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "adset_id",
+        "field_name": "adset_id",
+        "display_name": "Ad set ID",
+        "target_name": "ad_group_id",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "adsetstatus",
+        "field_name": "adsetstatus",
+        "display_name": "Ad set status",
+        "target_name": "ad_group_status",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "campaignobjective",
+        "field_name": "campaignobjective",
+        "display_name": "Campaign objective",
+        "target_name": "campaign_objective",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "Country",
+        "field_name": "Country",
+        "display_name": "Country code",
+        "target_name": "country",
+        "data_type": "string.geo.country.twolettercode"
+      },
+      {
+        "field_id": "Countryname",
+        "field_name": "Countryname",
+        "display_name": "Country",
+        "target_name": "country_name",
+        "data_type": "string.geo.country"
+      },
+      {
+        "field_id": "dataSourceName",
+        "field_name": "dataSourceName",
+        "display_name": "Data source",
+        "target_name": "data_source_name",
+        "data_type": "string.text.value"
+      },
+      {
+        "field_id": "Region",
+        "field_name": "Region",
+        "display_name": "Region",
+        "target_name": "region",
+        "data_type": "string.geo.region"
+      },
+      {
+        "field_id": "action_leadgen.other",
+        "field_name": "action_leadgen.other",
+        "display_name": "Leads (form)",
+        "target_name": "action_leadgen_other",
+        "data_type": "int.number.value"
+      },
+      {
+        "field_id": "action_link_click",
+        "field_name": "action_link_click",
+        "display_name": "Link clicks",
+        "target_name": "action_link_click",
+        "data_type": "int.number.value"
+      },
+      {
+        "field_id": "action_video_view",
+        "field_name": "action_video_view",
+        "display_name": "Three-second video views",
+        "target_name": "action_video_view",
+        "data_type": "int.number.value"
+      },
+      {
+        "field_id": "cost_eur",
+        "field_name": "cost_eur",
+        "display_name": "Cost (EUR)",
+        "target_name": "cost_eur",
+        "data_type": "float.currency.value"
+      },
+      {
+        "field_id": "cost_gbp",
+        "field_name": "cost_gbp",
+        "display_name": "Cost (GBP)",
+        "target_name": "cost_gbp",
+        "data_type": "float.currency.value"
+      },
+      {
+        "field_id": "cost_usd",
+        "field_name": "cost_usd",
+        "display_name": "Cost (USD)",
+        "target_name": "cost_usd",
+        "data_type": "float.currency.value"
+      },
+      {
+        "field_id": "onsite_conversion.lead_grouped",
+        "field_name": "onsite_conversion.lead_grouped",
+        "display_name": "On-Facebook leads",
+        "target_name": "onsite_conversion_lead_grouped",
+        "data_type": "int.number.value"
+      }
+    ]
+  }
+}
+
+docs {
+  Import table group.
+
+  Please note: Creates a new table group; names must be unique. There is no update or delete endpoint — to change a group, import a modified copy under a new name.
+}

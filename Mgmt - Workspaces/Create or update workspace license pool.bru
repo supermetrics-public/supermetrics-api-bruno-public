@@ -1,0 +1,33 @@
+meta {
+  name: Create or update workspace license pool
+  type: http
+  seq: 12
+}
+
+put {
+  url: https://api.supermetrics.com/v1/teams/:team_id/workspaces/:workspace_uuid/license-pool
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  workspace_uuid: 00000000-0000-0000-0000-000000000000
+}
+
+body:json {
+  {
+    "destinations": ["API", "DASH"]
+  }
+}
+
+docs {
+  Creates or updates the license pool for a workspace.
+  Required scope: team management (elevated API key).
+
+  Please note: Root (zero-level) workspace only. Send the complete desired configuration (destinations, data_sources) — it replaces the current pool settings.
+}

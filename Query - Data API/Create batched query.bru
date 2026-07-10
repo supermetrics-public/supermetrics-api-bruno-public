@@ -1,0 +1,42 @@
+meta {
+  name: Create batched query
+  type: http
+  seq: 13
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/query/batch
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "queries": [
+      {
+        "ds_id": "AW",
+        "ds_accounts": ["1234567890"],
+        "start_date": "2025-05-01",
+        "end_date": "2025-05-07",
+        "fields": ["campaign_name", "impressions", "clicks", "cost", "date"],
+        "max_rows": 100
+      },
+      {
+        "ds_id": "FA",
+        "ds_accounts": ["act_1234567890"],
+        "start_date": "2025-05-01",
+        "end_date": "2025-05-07",
+        "fields": ["campaign_name", "impressions", "clicks", "amount_spent", "date"],
+        "max_rows": 100
+      }
+    ],
+    "api_key": "{{process.env.API_KEY}}"
+  }
+}
+
+docs {
+  Submits multiple queries as a batch for async execution.
+  Returns a batch_id to poll for status and results.
+  Each query in the array follows the same schema as a single
+  POST /query/data/json request.
+}

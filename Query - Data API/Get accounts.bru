@@ -1,0 +1,21 @@
+meta {
+  name: Get accounts
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/accounts?api_key={{process.env.API_KEY}}&ds_id=AW&ds_users=user@example.com
+  body: none
+  auth: none
+}
+
+params:query {
+  api_key: {{process.env.API_KEY}}
+  ds_id: AW
+  ds_users: user@example.com
+}
+
+docs {
+  Get accounts.
+}

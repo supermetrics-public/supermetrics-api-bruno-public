@@ -1,0 +1,22 @@
+meta {
+  name: Create login link
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://api.supermetrics.com/enterprise/v2/ds/login/link
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  ds_id: AW
+  description: Google Ads Auth Link - Test
+  expiry_time: 24 hours
+  ~redirect_url: 
+}
+
+docs {
+  Create login link.
+}

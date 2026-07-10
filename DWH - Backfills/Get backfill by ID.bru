@@ -1,0 +1,20 @@
+meta {
+  name: Get backfill by ID
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/backfills/:backfill_id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  backfill_id: 228359
+}
+
+docs {
+  Get backfill by ID.
+}

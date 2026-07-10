@@ -1,0 +1,39 @@
+meta {
+  name: Test destination connection
+  type: http
+  seq: 6
+}
+
+post {
+  url: https://dts-api.supermetrics.com/v1/teams/:team_id/destinations/test-connection
+  body: json
+  auth: inherit
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+body:json {
+  {
+    "type": "DWH_SNOWFLAKE",
+    "display_name": "My Snowflake Destination",
+    "auth_method": "AUTH_METHOD_KEY_PAIR",
+    "fields": {
+      "hostname": "any-domain.my-region.snowflakecomputing.com",
+      "warehouse": "DEMO_WH",
+      "database_name": "TEST_DB",
+      "schema": "PUBLIC",
+      "role": "ACCOUNTADMIN",
+      "username": "USER",
+      "private_key": "-----BEGIN ENCRYPTED PRIVATE KEY-----...",
+      "passphrase": "***"
+    },
+    "destination_id": null,
+    "new_password": null
+  }
+}
+
+docs {
+  Test destination connection.
+}

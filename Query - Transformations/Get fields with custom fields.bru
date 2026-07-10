@@ -1,0 +1,31 @@
+meta {
+  name: Get fields with custom fields
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://api.supermetrics.com/enterprise/v2/query/fields?api_key={{process.env.API_KEY}}&ds_id=AW&ds_accounts=1234567890&ds_users={{process.env.DS_USER}}
+  body: none
+  auth: none
+}
+
+params:query {
+  api_key: {{process.env.API_KEY}}
+  ds_id: AW
+  ds_accounts: 1234567890
+  ds_users: {{process.env.DS_USER}}
+}
+
+docs {
+  Returns built-in AND custom fields. Custom fields are scoped to a
+  specific (ds_account, ds_user) pair, so both params are required to
+  surface them. Without ds_accounts+ds_users, only built-in fields return.
+
+  Custom fields and data blends are managed in the Supermetrics Hub UI;
+  there is currently no public CRUD API for them. Once defined, they
+  appear here and can be referenced by id in Query API requests like
+  any other field.
+
+  Please note: Set DS_USER in your .env (the data source login/username) or replace {{process.env.DS_USER}} inline.
+}

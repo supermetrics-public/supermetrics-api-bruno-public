@@ -1,0 +1,28 @@
+meta {
+  name: Unassign user from license
+  type: http
+  seq: 9
+}
+
+delete {
+  url: https://api.supermetrics.com/v1/teams/:team_id/licenses/:license_id/users/:user_id
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+  license_id: 67890
+  user_id: 12345
+}
+
+docs {
+  Unassigns a user from a license.
+  Required scope: team management (elevated API key).
+
+  Please note: To remove a user from a license, re-send "Assign users to license" with the full list minus that user.
+}

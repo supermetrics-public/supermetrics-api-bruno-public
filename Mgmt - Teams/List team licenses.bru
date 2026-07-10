@@ -1,0 +1,24 @@
+meta {
+  name: List team licenses
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://api.supermetrics.com/v1/teams/:team_id/licenses
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{process.env.API_KEY_TEAM_MGMT}}
+}
+
+params:path {
+  team_id: {{process.env.TEAM_ID}}
+}
+
+docs {
+  Lists all licenses for a team.
+  Required scope: team management (elevated API key).
+}

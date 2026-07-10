@@ -1,0 +1,25 @@
+meta {
+  name: Search data sources for team
+  type: http
+  seq: 5
+}
+
+get {
+  url: https://api.supermetrics.com/team/{{process.env.TEAM_ID}}/datasource/search?filter[product]=API&filter[status]=RELEASED
+  body: none
+  auth: inherit
+}
+
+params:query {
+  filter[product]: API
+  filter[status]: RELEASED
+  ~filter[keyword]:
+  ~filter[category]: PAID_MEDIA
+  ~filter[tag]: popular
+}
+
+docs {
+  Search data sources for team.
+
+  Please note: The team-scoped search requires an OAuth access token. For API-key auth use "Search data sources" instead.
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Create data source connection
+  type: http
+  seq: 11
+}
+
+post {
+  url: https://dts-api.supermetrics.com/v1/teams/{{process.env.TEAM_ID}}/data-source-connections
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data_source_id": "AW",
+    "destination_type": "SQL_BQ"
+  }
+}
+
+docs {
+  Creates a data source connection for a Hub transfer. Establishes
+  a connection between a data source and a destination type.
+  Required scope: dwh_transfers_write.
+
+  Common destination_type values: SQL_BQ (BigQuery),
+  DWH_SNOWFLAKE (Snowflake), DWH_REDSHIFT (Redshift).
+
+  Returns connection_id, login_url (for OAuth sources), and
+  connect_url. If login_url is returned, redirect the user there
+  to complete authentication.
+}
